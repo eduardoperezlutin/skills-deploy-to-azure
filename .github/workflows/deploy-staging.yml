@@ -37,6 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     name: Build image and store in GitHub Container Registry
+
+    permissions:
+      packages: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
