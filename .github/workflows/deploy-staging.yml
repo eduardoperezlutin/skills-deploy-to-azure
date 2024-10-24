@@ -38,9 +38,6 @@ jobs:
     needs: build
     name: Build image and store in GitHub Container Registry
 
-    permissions:
-      packages: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,7 +53,7 @@ jobs:
         with:
           registry: ${{ env.IMAGE_REGISTRY_URL }}
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.CR_PAT_CLASSIC }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -88,7 +85,7 @@ jobs:
         with:
           login-server: ${{env.IMAGE_REGISTRY_URL}}
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.CR_PAT_CLASSIC }}
 
       - name: Deploy web app container
         uses: azure/webapps-deploy@v3
